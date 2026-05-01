@@ -1,5 +1,7 @@
 package com.nippy.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nippy.demo.entity.Memo;
 import com.nippy.demo.exception.BusinessException;
 import com.nippy.demo.mapper.MemoMapper;
@@ -57,5 +59,13 @@ public class MemoServiceImpl implements MemoService {
     public boolean deleteById(Long id) {
         int rows = memoMapper.deleteById(id);
         return rows > 0;
+    }
+
+    @Override
+    public IPage<Memo> page(long current, long size) {
+        // Page(当前页, 每页条数)；MP 会从 1 开始计页
+        Page<Memo> p = new Page<>(current, size);
+        // 第二个参数 null 表示无额外条件；以后要按标题查可换成 QueryWrapper
+        return memoMapper.selectPage(p, null);
     }
 }

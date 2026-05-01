@@ -1,5 +1,6 @@
 package com.nippy.demo.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nippy.demo.entity.Memo;
 
 import java.util.List;
@@ -22,4 +23,9 @@ public interface MemoService {
 
     //按主键删除
     boolean deleteById(Long id);
+
+    /**
+     * 分页查询；current 第几页（从 1 开始），size 每页条数。
+     */
+    IPage<Memo> page(long current, long size);
 }

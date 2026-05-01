@@ -1,5 +1,6 @@
 package com.nippy.demo.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nippy.demo.common.Result;
 import com.nippy.demo.entity.Memo;
 import com.nippy.demo.service.MemoService;
@@ -56,5 +57,17 @@ public class MemoController {
             return Result.fail(400, "删除失败或记录不存在");
         }
         return Result.ok();
+    }
+
+    /**
+     * 分页：GET /api/memos/page?current=1&size=10
+     * current、size 不传时用默认值，避免调用方漏参。
+     */
+    @GetMapping("/page")
+    public Result<IPage<Memo>> page(
+            @RequestParam(defaultValue = "1") long current,
+            @RequestParam(defaultValue = "10") long size){
+
+        return Result.ok(memoService.page(current, size));
     }
 }
