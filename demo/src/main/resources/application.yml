@@ -1,3 +1,22 @@
 # 应用服务 WEB 访问端口
-server.port: 8080
+server:
+  port: 8080
+
+spring:
+  # 激活名为 local 的配置文件：会额外加载 application-local.yml
+  profiles:
+    active: local
+
+# MyBatis-Plus 全局设置
+mybatis-plus:
+  configuration:
+    # 数据库列下划线命名（如 user_id）自动映射到 Java 驼峰（userId）
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 主键策略：与数据库 AUTO_INCREMENT 一致，insert 时可不写 id
+      id-type: auto
+
+
+
 
