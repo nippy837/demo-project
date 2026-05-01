@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 //对应数据库表名
 @TableName("memo")
 @Data
@@ -14,6 +16,7 @@ public class Memo {
     @TableId(type = IdType.AUTO)
     private Long id;
 
+    @NotBlank(message = "标题不能为空")
     private String title;
 
     private String content;

@@ -1,6 +1,7 @@
 package com.nippy.demo.service.impl;
 
 import com.nippy.demo.entity.Memo;
+import com.nippy.demo.exception.BusinessException;
 import com.nippy.demo.mapper.MemoMapper;
 import com.nippy.demo.service.MemoService;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,11 @@ public class MemoServiceImpl implements MemoService {
 
     @Override
     public Memo getById(Long id) {
-        return memoMapper.selectById(id);
+        Memo memo = memoMapper.selectById(id);
+        if(memo == null){
+            throw new BusinessException(404, "备忘录不存在");
+        }
+        return memo;
     }
 
     @Override
