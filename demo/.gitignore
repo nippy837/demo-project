@@ -34,3 +34,5 @@ build/
 
 # 本地数据源密码，勿提交
 application-local.yml
+# 一些文档
+/docs
